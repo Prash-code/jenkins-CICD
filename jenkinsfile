@@ -2,14 +2,20 @@ pipeline {
     agent any
 
     stages {
-        stage('clone') {
+        
+        stage('stage-1-clone') {
             steps {
-               git branch: 'main', url: 'https://github.com/Prash-code/jenkins-CICD.git'
+                git branch: 'main', url: 'https://github.com/Prash-code/jenkins-CICD.git'
             }
         }
-        stage('init') {
+         stage('stage-2-terraform-init') {
             steps {
                 sh 'terraform init'
+            }
+        }
+        stage('stage-3-terraform-plan') {
+            steps {
+                sh 'terraform plan'
             }
         }
     }
